@@ -2,7 +2,7 @@
 
 import { useSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Login from "@/app/components/loginPage"; // Navbar
+import Login from "@/app/components/loginPage"; 
 import NowPlaying from "@/app/components/nowPlaying"; 
 import { PlayCircle } from "lucide-react";
 
@@ -10,7 +10,7 @@ export default function Home() {
   const { data: session, status } = useSession();
   const [lastSync, setLastSync] = useState<string | null>(null);
 
-  // --- Logic เดิมของคุณ (เก็บไว้เผื่อใช้แสดง Last update) ---
+
   useEffect(() => {
     if (status !== "authenticated") return;
     const syncTrack = async () => {
@@ -37,7 +37,6 @@ export default function Home() {
   if (status === "unauthenticated" || !session) {
     return (
       <main className="relative flex min-h-screen flex-col bg-neutral-950 text-white">
-        {/* ส่ง prop hideAuth เพื่อซ่อนปุ่ม Login ด้านบน (ถ้า Component รองรับ) */}
         <Login hideAuth={true} /> 
         
         <div className="flex flex-1 flex-col items-center justify-center px-4 text-center">
@@ -73,7 +72,6 @@ export default function Home() {
       {/* Main Layout Container */}
       <div className="container mx-auto flex min-h-[calc(100vh-80px)] max-w-5xl flex-col items-center justify-center px-6 pt-20 md:pt-0">
         
-        {/* Header Text (เพิ่มเพื่อให้ดูมีมิติขึ้น) */}
         <div className="mb-8 w-full text-center md:text-left md:pl-4">
            <h2 className="text-3xl font-bold text-white">
            </h2>
@@ -83,9 +81,7 @@ export default function Home() {
            </div>
         </div>
 
-        {/* เรียกใช้ Component Wide Capsule ที่นี่ */}
         <div className="w-full">
-            {/* เราใช้ session.accessToken ถ้าไม่มีให้ส่ง string ว่างไปก่อนเพื่อกัน Crash */}
             <NowPlaying accessToken={session.accessToken as string || ""} />
         </div>
 

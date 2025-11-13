@@ -8,7 +8,6 @@ const scopes = [
   "user-modify-playback-state",
 ].join(" "); 
 
-// DEBUG: Check if variables are loading
 console.log("Client ID:", process.env.SPOTIFY_CLIENT_ID); 
 
 export const authOptions = {

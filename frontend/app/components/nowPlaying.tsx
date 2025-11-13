@@ -76,7 +76,6 @@ export default function NowPlaying({ accessToken }: { accessToken: string }) {
   }
 
   return (
-    // 👉 Main Container: Wide shape (max-w-4xl), Flex row on desktop
     <div className="group relative w-full max-w-4xl overflow-hidden rounded-[50px] border border-white/10 bg-neutral-900 shadow-2xl transition-all hover:border-white/20">
       
       {/* Background Gradient (Left to Right) */}
