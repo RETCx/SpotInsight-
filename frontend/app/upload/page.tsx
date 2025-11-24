@@ -24,7 +24,6 @@ export default function UploadPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
-      // ตรวจสอบว่าเป็นไฟล์ .zip หรือไม่
       if (selectedFile.type === "application/zip" || selectedFile.type === "application/x-zip-compressed" || selectedFile.name.endsWith('.zip')) {
         setFile(selectedFile);
         setMessage(null);
@@ -45,14 +44,12 @@ export default function UploadPage() {
     setMessage(null);
 
     try {
-      // 1. เตรียมข้อมูลส่ง Server (Multipart Form Data)
       const data = new FormData();
       data.append("file", file);
       data.append("age", formData.age);
       data.append("sex", formData.sex);
       data.append("lifestyle", formData.lifestyle);
 
-      // 2. ส่งไป API (คุณต้องสร้าง API route นี้)
       const res = await fetch("/api/upload", {
         method: "POST",
         body: data,
@@ -60,7 +57,6 @@ export default function UploadPage() {
 
       if (!res.ok) throw new Error("Upload failed");
 
-      // 3. Success
       setMessage({ type: 'success', text: "Upload successful!" });
       setFile(null);
       setFormData({ age: "", sex: "", lifestyle: "" }); // Reset form
